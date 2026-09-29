@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Code Roaster // Architectural Blueprint Wireframe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas-bg": "#F5F5F3",
+            "panel-surface": "#FDFDFD",
+            "frame-ink": "#111111",
+            "border-hairline": "#E6E6E2",
+            "accent-burnt": "#D94826",
+            "severity-fatal": "#D94826",
+            "severity-smell": "#E69500",
+            "severity-optimization": "#2E7D32",
+            "surface-container": "#eeeeec",
+            "surface-container-low": "#f4f4f2",
+            "surface-container-high": "#e8e8e6",
+            "on-surface-variant": "#555859",
+            "outline": "#747878",
+          },
+          fontFamily: {
+            sans: ["Space Grotesk", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      border-radius: 0px !important; /* Strict architectural blueprint: zero border-radius everywhere */
+    }
+    body {
+      background-color: #F5F5F3;
+      background-image: 
+        linear-gradient(to right, rgba(17, 17, 17, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(17, 17, 17, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #111111;
+      margin: 0;
+      padding: 0;
+    }
+    .space-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .shadow-hard-sm {
+      box-shadow: 2px 2px 0px #111111;
+    }
+    .shadow-hard-md {
+      box-shadow: 4px 4px 0px #111111;
+    }
+    .shadow-hard-fatal {
+      box-shadow: 3px 3px 0px #D94826;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5F5F3;
+      border-left: 1px solid #E6E6E2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #111111;
+    }
+    .btn-press:active {
+      transform: translate(1px, 1px);
+      box-shadow: 0px 0px 0px #111111 !important;
+    }
+    .btn-hover:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #111111;
+    }
+    @keyframes spin-glyph {
+      0% { content: "/"; }
+      25% { content: "—"; }
+      50% { content: "\\"; }
+      75% { content: "|"; }
+      100% { content: "/"; }
+    }
+    .spinning-slash::after {
+      display: inline-block;
+      content: "/";
+      animation: spin-glyph 0.8s infinite steps(1);
+    }
+  </style>
+</head>
+<body class="min-h-screen p-3 md:p-6 flex flex-col items-center justify-start">
+
+  <!-- Stitch Blueprint Metadata Banner -->
+  <div class="w-full max-w-[1360px] mb-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-on-surface-variant uppercase tracking-widest border border-border-hairline bg-panel-surface/80 px-3 py-1.5 backdrop-blur-sm">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 bg-accent-burnt"></span>
+      <span class="font-bold text-frame-ink">GOOGLE STITCH // VISUAL SPECIFICATION & WIREFRAME</span>
+      <span class="text-border-hairline">|</span>
+      <span>THEME: ARCHITECTURAL DRAFTING DESK</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span>GRID: 24PX RIGID MECHANICAL CHASSIS</span>
+      <span class="text-border-hairline">|</span>
+      <span class="text-frame-ink font-semibold">INTERACTIVE PREVIEW</span>
+    </div>
+  </div>
+
+  <!-- Primary Workstation Chassis Card -->
+  <div class="w-full max-w-[1360px] bg-panel-surface border-2 border-frame-ink shadow-hard-md flex flex-col relative overflow-hidden">
+    
+    <!-- Top Utility Bar -->
+    <header class="border-b-2 border-frame-ink bg-panel-surface px-4 lg:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Left: Brand / Title / Version -->
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 bg-frame-ink text-panel-surface flex items-center justify-center font-bold text-xs">
+          &gt;_
+        </div>
+        <div class="flex items-baseline gap-2">
+          <h1 class="space-grotesk text-xl lg:text-2xl font-black uppercase tracking-wider text-frame-ink leading-none">
+            Code Roaster
+          </h1>
+          <span class="text-[10px] bg-canvas-bg border border-frame-ink px-1.5 py-0.5 text-frame-ink tracking-widest font-bold">
+            [v3 // FLASH-LITE]
+          </span>
+        </div>
+        <span class="hidden xl:inline-block text-[11px] text-on-surface-variant tracking-widest pl-2 border-l border-border-hairline">
+          SPEC // DRWG-GDG-NASHIK
+        </span>
+      </div>
+
+      <!-- Right: Roast Level, Language, Drawer Toggle, Primary CTA -->
+      <div class="flex items-center flex-wrap gap-2 md:gap-3">
+        <!-- Roast Level Radio Group -->
+        <div class="flex items-center border border-frame-ink bg-canvas-bg p-0.5 text-[11px] font-semibold">
+          <button id="level-dry" onclick="setRoastLevel('dry')" class="px-2.5 py-1 uppercase text-on-surface-variant hover:text-frame-ink transition-none" title="Mild and deadpan jabs">
+            DRY
+          </button>
+          <button id="level-sharp" onclick="setRoastLevel('sharp')" class="px-2.5 py-1 uppercase text-on-surface-variant hover:text-frame-ink transition-none" title="Pointed and witty. Calls out mistakes.">
+            SHARP
+          </button>
+          <button id="level-savage" onclick="setRoastLevel('savage')" class="px-2.5 py-1 uppercase font-bold bg-accent-burnt text-panel-surface border border-frame-ink shadow-hard-sm" title="Maximum burn. Brutally honest.">
+            SAVAGE
+          </button>
+        </div>
+
+        <!-- Language Selector Dropdown -->
+        <div class="relative">
+          <select id="lang-select" onchange="handleLanguageChange(this.value)" class="appearance-none bg-panel-surface border border-frame-ink px-3 py-1.5 pr-7 text-[11px] font-semibold uppercase tracking-wider text-frame-ink cursor-pointer hover:bg-canvas-bg focus:outline-none">
+            <option value="python" selected>PYTHON (.PY)</option>
+            <option value="javascript">JAVASCRIPT (.JS)</option>
+            <option value="typescript">TYPESCRIPT (.TS)</option>
+            <option value="java">JAVA (.JAVA)</option>
+            <option value="c">C (.C)</option>
+            <option value="cpp">C++ (.CPP)</option>
+            <option value="go">GO (.GO)</option>
+            <option value="rust">RUST (.RS)</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-frame-ink text-[10px]">
+            ▼
+          </div>
+        </div>
+
+        <!-- Error Message Toggle Drawer Button -->
+        <button id="toggle-error-drawer-btn" onclick="toggleErrorDrawer()" class="px-3 py-1.5 text-[11px] font-bold uppercase border border-dashed border-frame-ink bg-panel-surface hover:bg-canvas-bg text-frame-ink flex items-center gap-1.5 transition-none">
+          <span id="drawer-icon">+</span>
+          <span id="drawer-text">ERROR MSG</span>
+        </button>
+
+        <!-- Primary Action Button: ROAST MY CODE -->
+        <button id="roast-btn" onclick="triggerRoast()" class="btn-press btn-hover px-4 py-1.5 text-xs font-bold uppercase bg-accent-burnt text-panel-surface border-2 border-frame-ink shadow-hard-sm flex items-center gap-2 tracking-wider">
+          <span id="roast-btn-text">ROAST MY CODE</span>
+          <span class="hidden sm:inline-block text-[10px] bg-frame-ink text-panel-surface px-1.5 py-0.5 border border-panel-surface/30">
+            [Ctrl + ↵]
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Collapsible Error / Traceback Input Drawer (Hidden by default) -->
+    <div id="error-drawer" class="hidden border-b-2 border-frame-ink bg-surface-container-low p-4 transition-all">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-frame-ink">
+          <span class="inline-block w-2 h-2 bg-severity-fatal"></span>
+          <span>ATTACH COMPILER TRACEBACK / RUNTIME ERROR (OPTIONAL)</span>
+        </div>
+        <button onclick="toggleErrorDrawer()" class="text-xs text-on-surface-variant hover:text-severity-fatal uppercase tracking-wider underline">
+          [DISMISS ✕]
+        </button>
+      </div>
+      <textarea id="error-message-input" rows="2" placeholder="e.g. TypeError: unsupported operand type(s) for +=: 'int' and 'list' at line 14" class="w-full p-2 bg-panel-surface border border-frame-ink text-xs font-mono text-frame-ink focus:outline-none focus:ring-1 focus:ring-frame-ink resize-none"></textarea>
+    </div>
+
+    <!-- Main Two-Column Workstation Body -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[660px] bg-panel-surface">
+      
+      <!-- LEFT COLUMN: Code Editor Panel (~55% width on desktop) -->
+      <div class="lg:col-span-7 border-b-2 lg:border-b-0 lg:border-r-2 border-frame-ink flex flex-col bg-panel-surface">
+        
+        <!-- Editor Header Strip -->
+        <div class="bg-surface-container-low border-b border-frame-ink px-4 py-2 flex items-center justify-between text-xs uppercase tracking-wider text-frame-ink">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 bg-frame-ink"></span>
+            <span class="font-bold">INPUT // SRC — YOUR CODE</span>
+          </div>
+          <div class="flex items-center gap-3 text-[11px]">
+            <button onclick="loadSampleCode()" class="text-on-surface-variant hover:text-frame-ink font-semibold underline decoration-1 underline-offset-2">
+              [LOAD SAMPLE BUG]
+            </button>
+            <span class="text-border-hairline">|</span>
+            <button onclick="clearEditor()" class="text-on-surface-variant hover:text-severity-fatal font-semibold underline decoration-1 underline-offset-2">
+              [CLEAR]
+            </button>
+          </div>
+        </div>
+
+        <!-- Editor Surface with Line Gutter -->
+        <div class="flex-1 flex bg-panel-surface min-h-[480px] overflow-hidden relative">
+          <!-- Line Number Gutter -->
+          <div id="editor-gutter" class="w-11 py-3 select-none text-right text-[12px] text-outline border-r border-border-hairline bg-canvas-bg/80 pr-2.5 flex flex-col font-mono leading-[22px]">
+            <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+          </div>
+
+          <!-- Code Textarea -->
+          <div class="flex-1 relative p-0">
+            <textarea id="code-textarea" oninput="updateGutter()" spellcheck="false" class="w-full h-full p-3 font-mono text-[13px] leading-[22px] text-frame-ink bg-transparent border-0 outline-none resize-none overflow-y-auto" placeholder="// Paste or type code here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Editor Status Strip -->
+        <div class="border-t border-frame-ink bg-surface-container-low px-4 py-1.5 flex flex-wrap items-center justify-between text-[11px] text-on-surface-variant font-mono">
+          <div class="flex items-center gap-3">
+            <span id="cursor-pos">LN 14, COL 28</span>
+            <span class="text-border-hairline">|</span>
+            <span>UTF-8</span>
+            <span class="text-border-hairline">|</span>
+            <span id="char-count">248 CHARS</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 bg-severity-optimization"></span>
+            <span class="text-frame-ink font-semibold uppercase" id="editor-status-label">PYTHON 3.12 AUDIT READY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Report Panel (~45% width on desktop) -->
+      <div class="lg:col-span-5 flex flex-col bg-panel-surface">
+        
+        <!-- Report Header Strip -->
+        <div class="bg-surface-container-low border-b border-frame-ink px-4 py-2 flex items-center justify-between text-xs uppercase tracking-wider text-frame-ink">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 bg-accent-burnt"></span>
+            <span class="font-bold">AUDIT // REPORT — ROAST REPORT</span>
+          </div>
+          <span id="header-flaw-tag" class="text-severity-fatal font-bold text-[11px]">[CRITICAL: 03]</span>
+        </div>
+
+        <!-- Interactive State Preview Toolbar (Allows instant testing of all 4 states!) -->
+        <div class="border-b border-border-hairline bg-canvas-bg px-3 py-1.5 flex items-center justify-between gap-1 overflow-x-auto">
+          <span class="text-[10px] text-outline uppercase tracking-wider font-bold">STATE PREVIEW:</span>
+          <div class="flex items-center gap-1 text-[11px] font-mono">
+            <button id="tab-empty" onclick="switchReportState('empty')" class="px-2 py-0.5 border border-border-hairline text-on-surface-variant hover:border-frame-ink hover:text-frame-ink">
+              [EMPTY]
+            </button>
+            <button id="tab-loading" onclick="switchReportState('loading')" class="px-2 py-0.5 border border-border-hairline text-on-surface-variant hover:border-frame-ink hover:text-frame-ink">
+              [LOADING]
+            </button>
+            <button id="tab-results" onclick="switchReportState('results')" class="px-2 py-0.5 border border-frame-ink bg-panel-surface text-frame-ink font-bold shadow-hard-sm">
+              [RESULTS]
+            </button>
+            <button id="tab-error" onclick="switchReportState('error')" class="px-2 py-0.5 border border-border-hairline text-on-surface-variant hover:border-frame-ink hover:text-frame-ink">
+              [ERROR]
+            </button>
+          </div>
+        </div>
+
+        <!-- Report Content Container -->
+        <div class="flex-1 p-4 lg:p-5 flex flex-col justify-start gap-4 overflow-y-auto max-h-[660px]">
+          
+          <!-- STATE 1: EMPTY STATE -->
+          <div id="state-empty" class="hidden w-full h-full min-h-[460px] border border-border-hairline bg-canvas-bg/40 p-6 flex flex-col items-center justify-center text-center">
+            <div class="w-16 h-16 border-2 border-frame-ink bg-panel-surface flex items-center justify-center font-mono text-2xl text-frame-ink font-bold shadow-hard-sm mb-4">
+              { }
+            </div>
+            <div class="space-grotesk text-lg uppercase text-frame-ink font-bold tracking-tight mb-1">
+              Awaiting Code Artifact
+            </div>
+            <p class="text-xs text-on-surface-variant max-w-[280px] mb-4 leading-relaxed">
+              Paste your script into the left editor and hit <strong class="text-frame-ink font-semibold">ROAST MY CODE</strong> or press <kbd class="border border-frame-ink px-1 bg-panel-surface">Ctrl+Enter</kbd>.
+            </p>
+            <div class="text-[10px] text-outline bg-surface-container px-2.5 py-1 border border-border-hairline uppercase tracking-widest font-mono">
+              ENGINE STANDBY // 0 CYCLES
+            </div>
+          </div>
+
+          <!-- STATE 2: LOADING STATE -->
+          <div id="state-loading" class="hidden w-full h-full min-h-[460px] border border-border-hairline bg-canvas-bg/40 p-6 flex flex-col items-center justify-center text-center">
+            <div class="w-16 h-16 border-2 border-frame-ink bg-panel-surface flex items-center justify-center font-mono text-2xl text-frame-ink font-bold shadow-hard-sm mb-4 spinning-slash">
+            </div>
+            <div class="space-grotesk text-lg uppercase text-frame-ink font-bold tracking-tight mb-1">
+              Synthesizing Deconstruction...
+            </div>
+            <p class="text-xs text-on-surface-variant max-w-[300px] mb-4 leading-relaxed">
+              Executing Gemini 3.5 Flash-Lite deep AST evaluation and Hinglish architectural roast generation.
+            </p>
+            <!-- Progress Bar -->
+            <div class="w-48 h-2.5 bg-surface-container border border-frame-ink overflow-hidden p-0.5">
+              <div class="h-full bg-accent-burnt w-2/3 animate-pulse"></div>
+            </div>
+          </div>
+
+          <!-- STATE 3: RESULTS STATE (Full Second Screen as specified!) -->
+          <div id="state-results" class="flex flex-col gap-4">
+            
+            <!-- 01 // ROAST BANNER -->
+            <div class="border-2 border-frame-ink bg-canvas-bg p-3.5 shadow-hard-sm">
+              <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-1.5 pb-1 border-b border-border-hairline">
+                <span class="text-accent-burnt">01 // THE ROAST</span>
+                <span class="text-on-surface-variant">[LEVEL: SAVAGE 🔥]</span>
+              </div>
+              <p id="roast-content-text" class="text-xs leading-relaxed text-frame-ink font-medium">
+                Bhai, yeh loop har baar poori list add kar raha hai 😅. Python interpreter bhi soch raha hoga ki kya chal raha hai 🤦. Aur yeh mutable default argument `cache={}` dekh kar architectural linter ne toh suicide kar liya! 💀
+              </p>
+            </div>
+
+            <!-- Flaw Summary Metric Boxes -->
+            <div class="border border-frame-ink bg-canvas-bg p-3">
+              <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-2">
+                <span class="text-frame-ink">LIVE HARVEST SUMMARY</span>
+                <span class="text-severity-fatal font-bold">FLAW SCORE: 88/100</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="border border-border-hairline bg-panel-surface p-1.5">
+                  <div class="text-[10px] text-outline font-bold">FATAL</div>
+                  <div class="space-grotesk text-base font-bold text-severity-fatal">02</div>
+                </div>
+                <div class="border border-border-hairline bg-panel-surface p-1.5">
+                  <div class="text-[10px] text-outline font-bold">SMELLS</div>
+                  <div class="space-grotesk text-base font-bold text-severity-smell">01</div>
+                </div>
+                <div class="border border-border-hairline bg-panel-surface p-1.5">
+                  <div class="text-[10px] text-outline font-bold">OPTIM</div>
+                  <div class="space-grotesk text-base font-bold text-severity-optimization">01</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02 // WHAT'S WRONG (Issue Cards) -->
+            <div class="flex flex-col gap-2.5">
+              <div class="text-xs font-bold uppercase tracking-wider text-frame-ink flex items-center gap-1.5">
+                <span class="inline-block w-1.5 h-1.5 bg-frame-ink"></span>
+                <span>02 // WHAT'S WRONG (ISSUES DETECTED)</span>
+              </div>
+
+              <!-- Issue Card 1: Fatal Bug -->
+              <div class="border border-frame-ink bg-panel-surface p-3 shadow-hard-sm">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="bg-frame-ink text-panel-surface text-[10px] font-bold px-1.5 py-0.5">01</span>
+                    <span class="text-xs font-bold uppercase text-frame-ink">Mutable Default Argument Hazard</span>
+                  </div>
+                  <span class="border border-severity-fatal text-severity-fatal text-[10px] font-bold px-1.5 py-0.2 bg-severity-fatal/10">
+                    FATAL BUG
+                  </span>
+                </div>
+                <!-- Snippet with left stripe -->
+                <div class="border-l-4 border-severity-fatal bg-canvas-bg p-2 text-[12px] font-mono mb-2 border-r border-t border-b border-border-hairline">
+                  <code>def calculate_discount(price, customer_type, cache={}):</code>
+                </div>
+                <!-- Diagnosis & Expected -->
+                <div class="text-[11px] flex flex-col gap-1 text-on-surface-variant font-mono">
+                  <div class="flex items-start gap-1.5 text-severity-fatal">
+                    <span class="font-bold">✕</span>
+                    <span><strong>Diagnosis:</strong> Mutable dictionary `cache={}` maintains memory state across all subsequent invocations.</span>
+                  </div>
+                  <div class="flex items-start gap-1.5 text-severity-optimization">
+                    <span class="font-bold">✓</span>
+                    <span><strong>Expected:</strong> Assign `cache=None` as parameter default and instantiate fresh dict inside body.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Issue Card 2: Fatal Bug -->
+              <div class="border border-frame-ink bg-panel-surface p-3 shadow-hard-sm">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="bg-frame-ink text-panel-surface text-[10px] font-bold px-1.5 py-0.5">02</span>
+                    <span class="text-xs font-bold uppercase text-frame-ink">Unhandled NoneType Multiplication</span>
+                  </div>
+                  <span class="border border-severity-fatal text-severity-fatal text-[10px] font-bold px-1.5 py-0.2 bg-severity-fatal/10">
+                    FATAL BUG
+                  </span>
+                </div>
+                <div class="border-l-4 border-severity-fatal bg-canvas-bg p-2 text-[12px] font-mono mb-2 border-r border-t border-b border-border-hairline">
+                  <code>rate = None ... total = price - (price * rate)</code>
+                </div>
+                <div class="text-[11px] flex flex-col gap-1 text-on-surface-variant font-mono">
+                  <div class="flex items-start gap-1.5 text-severity-fatal">
+                    <span class="font-bold">✕</span>
+                    <span><strong>Diagnosis:</strong> Unmatched customer tier leaves `rate = None`, crashing runtime with TypeError.</span>
+                  </div>
+                  <div class="flex items-start gap-1.5 text-severity-optimization">
+                    <span class="font-bold">✓</span>
+                    <span><strong>Expected:</strong> Provide safe fallback rate or explicitly raise a ValueError for unknown customer types.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Issue Card 3: Code Smell -->
+              <div class="border border-frame-ink bg-panel-surface p-3 shadow-hard-sm">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="bg-frame-ink text-panel-surface text-[10px] font-bold px-1.5 py-0.5">03</span>
+                    <span class="text-xs font-bold uppercase text-frame-ink">ZeroDivision Hazard in Margin Calculation</span>
+                  </div>
+                  <span class="border border-severity-smell text-severity-smell text-[10px] font-bold px-1.5 py-0.2 bg-severity-smell/10">
+                    CODE SMELL
+                  </span>
+                </div>
+                <div class="border-l-4 border-severity-smell bg-canvas-bg p-2 text-[12px] font-mono mb-2 border-r border-t border-b border-border-hairline">
+                  <code>margin_ratio = 100 / (price - total)</code>
+                </div>
+                <div class="text-[11px] flex flex-col gap-1 text-on-surface-variant font-mono">
+                  <div class="flex items-start gap-1.5 text-severity-fatal">
+                    <span class="font-bold">✕</span>
+                    <span><strong>Diagnosis:</strong> When discount evaluates to zero (price == total), divisor becomes 0.</span>
+                  </div>
+                  <div class="flex items-start gap-1.5 text-severity-optimization">
+                    <span class="font-bold">✓</span>
+                    <span><strong>Expected:</strong> Check denominator `(price - total) > 0` before division.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 // THE FIX (Corrected Code Block with Copy & Apply buttons) -->
+            <div class="border-2 border-frame-ink bg-panel-surface shadow-hard-sm flex flex-col">
+              <div class="bg-surface-container-low border-b border-frame-ink px-3 py-1.5 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-frame-ink">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-severity-optimization font-bold">03 //</span>
+                  <span>FIXED CODE // SOLUTION.PY</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button id="copy-solution-btn" onclick="copySolutionCode()" class="px-2 py-0.5 border border-frame-ink bg-panel-surface hover:bg-canvas-bg text-[10px] font-bold uppercase transition-none">
+                    [COPY]
+                  </button>
+                  <button onclick="applyFixToEditor()" class="px-2 py-0.5 border border-frame-ink bg-severity-optimization text-panel-surface text-[10px] font-bold uppercase hover:opacity-90 transition-none">
+                    [APPLY TO EDITOR]
+                  </button>
+                </div>
+              </div>
+              <pre class="p-3 bg-surface-container-lowest text-[12px] font-mono text-frame-ink overflow-x-auto leading-[20px] m-0"><code id="solution-code-block">def calculate_discount(price, customer_type, cache=None):
+    """Calculates discount with safe default caching and type guards."""
+    if cache is None:
+        cache = {}
+
+    if customer_type in cache:
+        return cache[customer_type] * price
+
+    rates = {
+        "VIP": 0.35,
+        "RETAIL": 0.05,
+        "GUEST": 0.00
+    }
+    rate = rates.get(customer_type, 0.00)
+    total = price - (price * rate)
+
+    # Safe division guard
+    discount_amount = price - total
+    margin_ratio = (100 / discount_amount) if discount_amount > 0 else 0.0
+
+    cache[customer_type] = rate
+    return round(total, 2)</code></pre>
+            </div>
+
+            <!-- 04 // TAKEAWAY -->
+            <div class="border border-frame-ink bg-canvas-bg p-3">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-frame-ink mb-1 flex items-center gap-1.5">
+                <span class="text-accent-burnt font-bold">04 //</span>
+                <span>ARCHITECTURAL TAKEAWAY</span>
+              </div>
+              <p class="text-xs text-on-surface-variant font-mono leading-relaxed">
+                Always avoid mutable default arguments in Python functions (`cache={}` or `items=[]`). Use dictionaries with `.get()` for explicit fallbacks and protect arithmetic denominators from zero division.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- STATE 4: ERROR STATE -->
+          <div id="state-error" class="hidden w-full h-full min-h-[460px] border-2 border-severity-fatal bg-severity-fatal/5 p-6 flex flex-col items-center justify-center text-center">
+            <div class="w-16 h-16 border-2 border-severity-fatal bg-panel-surface flex items-center justify-center space-grotesk text-3xl text-severity-fatal font-bold shadow-hard-fatal mb-4">
+              !
+            </div>
+            <div class="space-grotesk text-lg uppercase text-severity-fatal font-bold tracking-tight mb-1">
+              AST Compilation / API Fault
+            </div>
+            <p id="error-description-text" class="text-xs text-on-surface-variant max-w-[320px] mb-4 leading-relaxed font-mono">
+              Syntax anomaly at line 14: Unexpected token 'margin_ratio' with unhandled NoneType operands in scope.
+            </p>
+            <button onclick="triggerRoast()" class="btn-press px-4 py-2 text-xs font-bold uppercase border-2 border-severity-fatal bg-panel-surface text-severity-fatal hover:bg-severity-fatal hover:text-panel-surface transition-none shadow-hard-fatal">
+              [RETRY ANALYSIS]
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Status Bar Footer -->
+    <footer class="border-t-2 border-frame-ink bg-frame-ink text-panel-surface px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block w-2 h-2 rounded-full bg-severity-optimization animate-ping"></span>
+          <span class="font-bold tracking-widest text-panel-surface">STATUS: ONLINE (gemini-3.5-flash-lite)</span>
+        </span>
+        <span class="text-outline">|</span>
+        <span class="tracking-wider text-canvas-bg">ENGINE: GOOGLE GEMINI</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="tracking-wider text-panel-surface font-semibold">CODE ROASTER WORKSTATION v3</span>
+        <span class="hidden sm:inline-block text-outline">|</span>
+        <span class="hidden sm:inline-block tracking-widest text-canvas-bg">MADE AT GDG NASHIK PRE-DEVFEST WORKSHOP</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Interactive JavaScript Logic for the Wireframe -->
+  <script>
+    // Sample Buggy Code from Specification
+    const sampleBuggyCode = `import datetime
+import json
+
+def calculate_discount(price, customer_type, cache={}):
+    # BUG 01: Mutable default argument preserves state between calls
+    if customer_type in cache:
+        return cache[customer_type] * price
+
+    rate = None
+    if customer_type == "VIP":
+        rate = 0.35
+    elif customer_type == "RETAIL":
+        rate = 0.05
+
+    # BUG 02: Potential NoneType multiplication below
+    total = price - (price * rate)
+    
+    # BUG 03: Zero division hazard if factor evaluates to empty
+    margin_ratio = 100 / (price - total)
+    
+    cache[customer_type] = rate
+    return round(total, 2)
+
+# Unbounded execution test payload
+order_ledger = [calculate_discount(120, "GUEST") for _ in range(1000)]`;
+
+    let currentRoastLevel = 'savage';
+    let currentLanguage = 'python';
+    let errorDrawerOpen = false;
+
+    // Initialize textarea
+    const textarea = document.getElementById('code-textarea');
+    textarea.value = sampleBuggyCode;
+    updateGutter();
+
+    function updateGutter() {
+      const lines = textarea.value.split('\n').length;
+      const gutter = document.getElementById('editor-gutter');
+      let html = '';
+      for (let i = 1; i <= Math.max(lines, 22); i++) {
+        html += `<span>${i.toString().padStart(2, '0')}</span>`;
+      }
+      gutter.innerHTML = html;
+      document.getElementById('char-count').innerText = `${textarea.value.length} CHARS`;
+    }
+
+    function loadSampleCode() {
+      textarea.value = sampleBuggyCode;
+      updateGutter();
+    }
+
+    function clearEditor() {
+      textarea.value = '';
+      updateGutter();
+      switchReportState('empty');
+    }
+
+    function setRoastLevel(level) {
+      currentRoastLevel = level;
+      const levels = ['dry', 'sharp', 'savage'];
+      levels.forEach(lvl => {
+        const btn = document.getElementById(`level-${lvl}`);
+        if (lvl === level) {
+          btn.className = "px-2.5 py-1 uppercase font-bold bg-accent-burnt text-panel-surface border border-frame-ink shadow-hard-sm";
+        } else {
+          btn.className = "px-2.5 py-1 uppercase text-on-surface-variant hover:text-frame-ink transition-none";
+        }
+      });
+      // Update roast text dynamically
+      const roastEl = document.getElementById('roast-content-text');
+      if (level === 'dry') {
+        roastEl.innerText = "The loop calculates repeatedly. Mutable cache in the arguments is carrying values between invocations. Consider standard refactoring.";
+      } else if (level === 'sharp') {
+        roastEl.innerText = "Notice how `cache={}` acts like an unwanted global variable? And if customer_type isn't VIP or RETAIL, rate is None, which blows up line 17.";
+      } else {
+        roastEl.innerText = "Bhai, yeh loop har baar poori list add kar raha hai 😅. Python interpreter bhi soch raha hoga ki kya chal raha hai 🤦. Aur yeh mutable default argument `cache={}` dekh kar architectural linter ne toh suicide kar liya! 💀";
+      }
+    }
+
+    function handleLanguageChange(lang) {
+      currentLanguage = lang;
+      document.getElementById('editor-status-label').innerText = `${lang.toUpperCase()} AUDIT READY`;
+    }
+
+    function toggleErrorDrawer() {
+      errorDrawerOpen = !errorDrawerOpen;
+      const drawer = document.getElementById('error-drawer');
+      const icon = document.getElementById('drawer-icon');
+      const text = document.getElementById('drawer-text');
+      if (errorDrawerOpen) {
+        drawer.classList.remove('hidden');
+        icon.innerText = '−';
+        text.innerText = 'ERROR MSG';
+      } else {
+        drawer.classList.add('hidden');
+        icon.innerText = '+';
+        text.innerText = 'ERROR MSG';
+      }
+    }
+
+    function switchReportState(stateId) {
+      const states = ['empty', 'loading', 'results', 'error'];
+      states.forEach(s => {
+        const el = document.getElementById(`state-${s}`);
+        const tab = document.getElementById(`tab-${s}`);
+        if (s === stateId) {
+          el.classList.remove('hidden');
+          tab.className = "px-2 py-0.5 border border-frame-ink bg-panel-surface text-frame-ink font-bold shadow-hard-sm";
+        } else {
+          el.classList.add('hidden');
+          tab.className = "px-2 py-0.5 border border-border-hairline text-on-surface-variant hover:border-frame-ink hover:text-frame-ink";
+        }
+      });
+
+      // Update header flaw tag
+      const tag = document.getElementById('header-flaw-tag');
+      if (stateId === 'results') {
+        tag.innerText = "[CRITICAL: 03]";
+        tag.className = "text-severity-fatal font-bold text-[11px]";
+      } else if (stateId === 'empty') {
+        tag.innerText = "[IDLE]";
+        tag.className = "text-outline font-bold text-[11px]";
+      } else if (stateId === 'loading') {
+        tag.innerText = "[ANALYZING...]";
+        tag.className = "text-accent-burnt font-bold text-[11px]";
+      } else {
+        tag.innerText = "[FAULT DETECTED]";
+        tag.className = "text-severity-fatal font-bold text-[11px]";
+      }
+    }
+
+    function triggerRoast() {
+      const code = textarea.value.trim();
+      if (!code) {
+        document.getElementById('error-description-text').innerText = "No code provided. I can't roast the void.";
+        switchReportState('error');
+        return;
+      }
+
+      // Show loading state first, then resolve to results
+      switchReportState('loading');
+      document.getElementById('roast-btn-text').innerText = "ANALYZING...";
+
+      setTimeout(() => {
+        switchReportState('results');
+        document.getElementById('roast-btn-text').innerText = "ROAST MY CODE";
+      }, 700);
+    }
+
+    function copySolutionCode() {
+      const code = document.getElementById('solution-code-block').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copy-solution-btn');
+        btn.innerText = "[COPIED!]";
+        setTimeout(() => { btn.innerText = "[COPY]"; }, 2000);
+      });
+    }
+
+    function applyFixToEditor() {
+      const code = document.getElementById('solution-code-block').innerText;
+      textarea.value = code;
+      updateGutter();
+    }
+
+    // Ctrl+Enter listener
+    window.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        triggerRoast();
+      }
+    });
+  </script>
+</body>
+</html>

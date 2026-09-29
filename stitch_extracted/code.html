@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Code Roaster // Workstation Terminal</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-bright": "#f9f9f7",
+          "severity-fatal": "#D94826",
+          "primary-fixed-dim": "#c8c6c5",
+          "on-error-container": "#93000a",
+          "canvas-bg": "#F5F5F3",
+          "inverse-primary": "#c8c6c5",
+          "on-secondary-container": "#5f0f00",
+          "on-tertiary-fixed-variant": "#484645",
+          "surface": "#f9f9f7",
+          "on-primary": "#ffffff",
+          "inverse-on-surface": "#f1f1ef",
+          "on-tertiary-container": "#868381",
+          "accent-burnt": "#D94826",
+          "error-container": "#ffdad6",
+          "primary": "#000000",
+          "surface-variant": "#e2e3e1",
+          "grid-pattern": "rgba(17, 17, 17, 0.04)",
+          "outline-variant": "#c4c7c7",
+          "border-hairline": "#E6E6E2",
+          "secondary-fixed": "#ffdad2",
+          "surface-container-highest": "#e2e3e1",
+          "inverse-surface": "#2f3130",
+          "outline": "#747878",
+          "error": "#ba1a1a",
+          "on-background": "#1a1c1b",
+          "on-primary-fixed-variant": "#474646",
+          "tertiary-container": "#1d1b1a",
+          "secondary-fixed-dim": "#ffb4a3",
+          "primary-container": "#1c1b1b",
+          "tertiary-fixed-dim": "#cac6c3",
+          "frame-ink": "#111111",
+          "secondary-container": "#ff633e",
+          "on-primary-fixed": "#1c1b1b",
+          "on-secondary-fixed-variant": "#8b1b00",
+          "on-surface": "#1a1c1b",
+          "panel-surface": "#FDFDFD",
+          "severity-optimization": "#2E7D32",
+          "secondary": "#b22c0b",
+          "on-tertiary": "#ffffff",
+          "surface-container-high": "#e8e8e6",
+          "tertiary": "#000000",
+          "on-surface-variant": "#444748",
+          "on-secondary-fixed": "#3d0700",
+          "on-tertiary-fixed": "#1d1b1a",
+          "on-secondary": "#ffffff",
+          "surface-container": "#eeeeec",
+          "surface-container-low": "#f4f4f2",
+          "surface-container-lowest": "#ffffff",
+          "on-error": "#ffffff",
+          "severity-smell": "#E69500",
+          "primary-fixed": "#e5e2e1",
+          "background": "#f9f9f7",
+          "surface-tint": "#5f5e5e",
+          "on-primary-container": "#858383",
+          "tertiary-fixed": "#e6e1df",
+          "surface-dim": "#dadad8"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-sm": "0.5rem",
+          "space-xl": "2rem",
+          "margin": "1.5rem",
+          "gutter": "1rem",
+          "space-xs": "0.25rem",
+          "space-md": "1rem",
+          "space-lg": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-xl": ["Space Grotesk"],
+          "label-lg": ["JetBrains Mono"],
+          "body-md": ["JetBrains Mono"],
+          "label-sm": ["JetBrains Mono"],
+          "code-block": ["JetBrains Mono"],
+          "body-lg": ["JetBrains Mono"],
+          "headline-md": ["Space Grotesk"],
+          "headline-xl-mobile": ["Space Grotesk"],
+          "body-sm": ["JetBrains Mono"],
+          "label-md": ["JetBrains Mono"],
+          "headline-lg": ["Space Grotesk"]
+        },
+        "fontSize": {
+          "headline-xl": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+          "body-md": ["13px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+          "label-sm": ["10px", {"lineHeight": "12px", "letterSpacing": "0.14em", "fontWeight": "500"}],
+          "code-block": ["13px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+          "body-lg": ["15px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+          "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+          "headline-xl-mobile": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "body-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+          "label-md": ["11px", {"lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "500"}],
+          "headline-lg": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }</script></head><body class="bg-canvas-bg font-body-md text-on-surface antialiased min-h-screen flex flex-col items-center justify-start p-space-md lg:p-space-lg selection:bg-frame-ink selection:text-surface-bright"><div class="w-full max-w-[1360px] flex-1 flex flex-col bg-panel-surface border-2 border-frame-ink shadow-[4px_4px_0px_#111111] relative"><header class="fixed top-0 left-0 right-0 z-50 bg-panel-surface border-b-2 border-frame-ink"><div class="h-14 max-w-[1360px] mx-auto px-space-md flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Code Roaster Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UsWPSXdushrpMCquY2zwznZpxvKXcwgAeWztsSZevKmOkIgRYhHdmoEMtL7JbXOs-nTpY1sEbJME-rNVEW2YBrwsbQ_AhGxxTU8oxksY73C5TcvU8pMi1ykjna2Aq6VjGjIKcuRGd-zJOLHSymi01GPL3zpk6YOdi6RDMF8bRV6jiFPjFvFvyd1EeJj_a-cleVGFg7IfYxpw7twRL6W0y4pkDPPEHCaJQ7FgHFW3lxfi7Ncs2MCrCyqzrf"/><div class="flex flex-col"><span class="font-headline-md text-headline-md uppercase tracking-tight text-frame-ink leading-none">Code Roaster</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">v4.0.2 // DRAFTING_DESK</span></div></div><nav class="hidden md:flex items-center gap-space-xs font-label-md text-label-md uppercase tracking-wider" data-active-classes="bg-frame-ink text-surface-bright font-label-md"><a aria-current="page" class="px-space-sm py-space-xs transition-none bg-frame-ink text-surface-bright font-label-md" data-path="workstation" href="#">Terminal</a><a class="px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-none" data-path="specifications" href="#">Specs &amp; Rules</a><a class="px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-none" data-path="system-telemetry" href="#">Telemetry</a><a class="px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-none" data-path="archive" href="#">Audit Logs</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs font-label-sm text-label-sm px-space-sm py-space-xs bg-canvas-bg border border-frame-ink"><span class="w-2 h-2 rounded-full bg-severity-optimization"></span><span class="text-frame-ink tracking-widest uppercase">SYS_ONLINE</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full flex-1 pt-14 bg-panel-surface"><div class="flex flex-col w-full">
+<div class="relative w-full bg-canvas-bg py-space-sm sm:py-space-md" style="background-image: linear-gradient(to right, rgba(17,17,17,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(17,17,17,0.05) 1px, transparent 1px); background-size: 20px 20px;">
+<div class="w-full max-w-[1360px] mx-auto bg-panel-surface border-2 border-frame-ink shadow-[4px_4px_0px_#111111] relative">
+<div class="border-b-2 border-frame-ink bg-panel-surface px-4 lg:px-6 py-3 flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm md:gap-space-md">
+<img alt="Code Roaster Terminal Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UsWPSXdushrpMCquY2zwznZpxvKXcwgAeWztsSZevKmOkIgRYhHdmoEMtL7JbXOs-nTpY1sEbJME-rNVEW2YBrwsbQ_AhGxxTU8oxksY73C5TcvU8pMi1ykjna2Aq6VjGjIKcuRGd-zJOLHSymi01GPL3zpk6YOdi6RDMF8bRV6jiFPjFvFvyd1EeJj_a-cleVGFg7IfYxpw7twRL6W0y4pkDPPEHCaJQ7FgHFW3lxfi7Ncs2MCrCyqzrf"/>
+<div class="flex items-baseline gap-space-xs md:gap-space-sm">
+<span class="font-headline-lg text-headline-lg uppercase text-frame-ink tracking-widest font-black leading-none">Code Roaster</span>
+<span class="font-label-sm text-label-sm bg-canvas-bg border border-frame-ink px-1.5 py-0.5 text-frame-ink tracking-wider">[v1.0.4-BETA]</span>
+</div>
+<span class="hidden xl:inline-block font-label-sm text-label-sm text-on-surface-variant tracking-widest pl-space-xs border-l border-border-hairline">
+            SPEC // DRWG-084
+          </span>
+</div>
+<div class="flex items-center flex-wrap gap-2 md:gap-space-sm">
+<div class="flex items-center border border-frame-ink bg-canvas-bg p-0.5">
+<button class="px-2.5 py-1 font-label-sm text-label-sm uppercase transition-none text-on-surface-variant hover:text-frame-ink" type="button">MILD</button>
+<button class="px-2.5 py-1 font-label-sm text-label-sm uppercase transition-none text-on-surface-variant hover:text-frame-ink" type="button">MEDIUM</button>
+<button class="px-2.5 py-1 font-label-sm text-label-sm uppercase font-bold bg-accent-burnt text-surface-bright border border-frame-ink shadow-[1px_1px_0px_#111111]" type="button">BRUTAL</button>
+</div>
+<div class="relative">
+<button class="px-2.5 py-1.5 font-label-sm text-label-sm uppercase border border-frame-ink bg-panel-surface text-frame-ink flex items-center gap-1.5 hover:bg-canvas-bg" type="button">
+<span>PYTHON 3.12</span>
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+</button>
+</div>
+<button class="px-2.5 py-1.5 font-label-sm text-label-sm uppercase border border-frame-ink bg-panel-surface hover:bg-canvas-bg text-frame-ink flex items-center gap-1" type="button">
+<span class="font-bold">+</span>
+<span>ERROR MSG</span>
+</button>
+<button class="px-4 py-1.5 font-label-md text-label-md uppercase font-bold bg-accent-burnt text-surface-bright border-2 border-frame-ink shadow-[2px_2px_0px_#111111] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#111111] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[0px_0px_0px_#111111] flex items-center gap-2" type="button">
+<span>ROAST MY CODE</span>
+<span class="hidden sm:inline-block font-label-sm text-label-sm bg-frame-ink text-surface-bright px-1 py-0.2 border border-surface-bright/30">[Ctrl + ↵]</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[640px] bg-panel-surface">
+<div class="lg:col-span-7 border-b-2 lg:border-b-0 lg:border-r-2 border-frame-ink flex flex-col">
+<div class="bg-surface-container-low border-b border-frame-ink px-4 py-2 flex items-center justify-between font-label-sm text-label-sm uppercase tracking-wider text-frame-ink">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 bg-frame-ink"></span>
+<span class="font-bold">INPUT // SRC — YOUR CODE</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-frame-ink underline decoration-1 underline-offset-2" type="button">[SAMPLE]</button>
+<button class="text-on-surface-variant hover:text-severity-fatal underline decoration-1 underline-offset-2" type="button">[CLEAR]</button>
+</div>
+</div>
+<div class="flex-1 flex font-code-block text-code-block bg-surface-container-lowest min-h-[480px] overflow-x-auto">
+<div class="w-12 py-4 select-none text-right font-label-sm text-label-sm text-outline border-r border-border-hairline bg-canvas-bg/60 pr-2 flex flex-col gap-0 leading-[22px]">
+<span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+</div>
+<div class="flex-1 p-4 text-frame-ink overflow-x-auto leading-[22px]">
+<pre class="font-code-block text-code-block m-0"><code><span class="text-outline font-semibold">import</span> datetime
+<span class="text-outline font-semibold">import</span> json
+
+<span class="text-secondary font-bold">def</span> <span class="text-frame-ink font-bold underline decoration-severity-fatal">calculate_discount</span>(price, customer_type, cache={}):
+    <span class="text-outline-variant italic"># BUG 01: Mutable default argument preserves state between calls</span>
+    <span class="text-outline font-semibold">if</span> customer_type <span class="text-outline font-semibold">in</span> cache:
+        <span class="text-outline font-semibold">return</span> cache[customer_type] * price
+
+    rate = <span class="text-severity-fatal font-semibold">None</span>
+    <span class="text-outline font-semibold">if</span> customer_type == <span class="text-severity-optimization">"VIP"</span>:
+        rate = 0.35
+    <span class="text-outline font-semibold">elif</span> customer_type == <span class="text-severity-optimization">"RETAIL"</span>:
+        rate = 0.05
+
+    <span class="text-outline-variant italic"># BUG 02: Potential NoneType multiplication below</span>
+    total = price - (price * rate)
+    
+    <span class="text-outline-variant italic"># BUG 03: Zero division hazard if factor evaluates to empty</span>
+    margin_ratio = 100 / (price - total)
+    
+    cache[customer_type] = rate
+    <span class="text-outline font-semibold">return</span> round(total, 2)
+
+<span class="text-outline-variant italic"># Unbounded execution test payload</span>
+order_ledger = [calculate_discount(120, <span class="text-severity-optimization">"GUEST"</span>) <span class="text-outline font-semibold">for</span> _ <span class="text-outline font-semibold">in</span> range(1000)]</code></pre>
+</div>
+</div>
+<div class="border-t border-frame-ink bg-surface-container-low px-4 py-1.5 flex flex-wrap items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span>LN 14, COL 28</span>
+<span class="text-border-hairline">|</span>
+<span>UTF-8</span>
+<span class="text-border-hairline">|</span>
+<span>SPACES: 4</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-block w-1.5 h-1.5 bg-severity-optimization"></span>
+<span class="text-frame-ink font-semibold">PYTHON 3.12 AUDIT READY</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col bg-panel-surface">
+<div class="bg-surface-container-low border-b border-frame-ink px-4 py-2 flex items-center justify-between font-label-sm text-label-sm uppercase tracking-wider text-frame-ink">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 bg-accent-burnt"></span>
+<span class="font-bold">AUDIT // REPORT — ROAST REPORT</span>
+</div>
+<span class="text-severity-fatal font-semibold">[CRITICAL: 03]</span>
+</div>
+<div class="border-b border-border-hairline bg-canvas-bg px-3 py-1.5 flex items-center justify-between gap-1 overflow-x-auto">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">STATE PREVIEW:</span>
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<button class="px-2 py-0.5 border border-frame-ink bg-panel-surface text-frame-ink hover:bg-surface-container" id="tab-empty" onclick="switchState('state-empty')" type="button">[EMPTY]</button>
+<button class="px-2 py-0.5 border border-border-hairline text-on-surface-variant hover:border-frame-ink hover:text-frame-ink" id="tab-loading" onclick="switchState('state-loading')" type="button">[LOADING]</button>
+<button class="px-2 py-0.5 border border-border-hairline text-on-surface-variant hover:border-frame-ink hover:text-frame-ink" id="tab-error" onclick="switchState('state-error')" type="button">[ERROR]</button>
+</div>
+</div>
+<div class="flex-1 p-4 lg:p-6 flex flex-col justify-start gap-4">
+<div class="w-full h-full min-h-[380px] border border-border-hairline bg-canvas-bg/40 p-6 flex flex-col items-center justify-center text-center" id="state-empty">
+<div class="w-16 h-16 border-2 border-frame-ink bg-panel-surface flex items-center justify-center font-code-block text-headline-lg text-frame-ink font-bold shadow-[2px_2px_0px_#111111] mb-4">
+                { }
+              </div>
+<div class="font-headline-md text-headline-md uppercase text-frame-ink tracking-tight mb-1">
+                Awaiting Code Artifact
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[280px] mb-4">
+                Paste your script and execute audit to trigger structural evaluation and architectural roasting.
+              </p>
+<div class="font-label-sm text-label-sm text-outline bg-surface-container px-2 py-1 border border-border-hairline uppercase">
+                ENGINE STANDBY // 0 CYCLES
+              </div>
+</div>
+<div class="hidden w-full h-full min-h-[380px] border border-border-hairline bg-canvas-bg/40 p-6 flex flex-col items-center justify-center text-center" id="state-loading">
+<div class="w-16 h-16 border-2 border-frame-ink bg-panel-surface flex items-center justify-center font-code-block text-headline-xl text-frame-ink font-bold shadow-[2px_2px_0px_#111111] mb-4 animate-pulse">
+                /
+              </div>
+<div class="font-headline-md text-headline-md uppercase text-frame-ink tracking-tight mb-1">
+                Synthesizing Deconstruction...
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[300px] mb-3">
+                Executing Google Gemini deep AST inspection and architectural flaw vector analysis.
+              </p>
+<div class="w-48 h-2 bg-surface-container border border-frame-ink overflow-hidden">
+<div class="h-full bg-accent-burnt w-2/3 animate-[pulse_1s_infinite]"></div>
+</div>
+</div>
+<div class="hidden w-full h-full min-h-[380px] border-2 border-severity-fatal bg-error-container/20 p-6 flex flex-col items-center justify-center text-center" id="state-error">
+<div class="w-16 h-16 border-2 border-severity-fatal bg-panel-surface flex items-center justify-center font-headline-xl text-headline-xl text-severity-fatal font-bold shadow-[2px_2px_0px_#D94826] mb-4">
+                !
+              </div>
+<div class="font-headline-md text-headline-md uppercase text-severity-fatal tracking-tight mb-1">
+                AST Compilation Failed
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[320px] mb-4">
+                Syntax anomaly at line 14: Unexpected token 'margin_ratio' with unhandled NoneType operands in scope.
+              </p>
+<button class="px-4 py-2 font-label-sm text-label-sm uppercase font-bold border-2 border-severity-fatal bg-panel-surface text-severity-fatal hover:bg-severity-fatal hover:text-surface-bright transition-none shadow-[2px_2px_0px_#D94826]" type="button">
+                [RETRY ANALYSIS]
+              </button>
+</div>
+<div class="border border-frame-ink bg-canvas-bg p-3">
+<div class="flex items-center justify-between font-label-sm text-label-sm uppercase mb-2">
+<span class="font-bold text-frame-ink">LIVE HARVEST SUMMARY</span>
+<span class="text-severity-fatal font-bold">FLAW SCORE: 88/100</span>
+</div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="border border-border-hairline bg-panel-surface p-1.5">
+<div class="font-label-sm text-label-sm text-outline">FATAL</div>
+<div class="font-headline-md text-headline-md text-severity-fatal font-bold">02</div>
+</div>
+<div class="border border-border-hairline bg-panel-surface p-1.5">
+<div class="font-label-sm text-label-sm text-outline">SMELLS</div>
+<div class="font-headline-md text-headline-md text-severity-sm pioneer font-bold text-severity-smell">04</div>
+</div>
+<div class="border border-border-hairline bg-panel-surface p-1.5">
+<div class="font-label-sm text-label-sm text-outline">OPTIM</div>
+<div class="font-headline-md text-headline-md text-severity-optimization font-bold">01</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t-2 border-frame-ink bg-frame-ink text-surface-bright px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-severity-optimization animate-ping"></span>
+<span class="font-bold tracking-widest text-surface-bright">STATUS: ONLINE (gemini-1.5-pro)</span>
+</span>
+<span class="text-outline">|</span>
+<span class="tracking-wider text-primary-fixed-dim">ENGINE: GOOGLE GEMINI</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="tracking-wider text-surface-bright font-semibold">CODE ROASTER WORKSTATION v1.0.4</span>
+<span class="hidden sm:inline-block text-outline">|</span>
+<span class="hidden sm:inline-block tracking-widest text-primary-fixed-dim">MADE AT GDG NASHIK PRE-DEVFEST WORKSHOP</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function switchState(stateId) {
+      const states = ['state-empty', 'state-loading', 'state-error'];
+      const tabs = {
+        'state-empty': 'tab-empty',
+        'state-loading': 'tab-loading',
+        'state-error': 'tab-error'
+      };
+
+      states.forEach(function(id) {
+        const el = document.getElementById(id);
+        const tabEl = document.getElementById(tabs[id]);
+        if (el) {
+          if (id === stateId) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        }
+        if (tabEl) {
+          if (id === stateId) {
+            tabEl.classList.add('bg-panel-surface', 'border-frame-ink', 'text-frame-ink');
+            tabEl.classList.remove('border-border-hairline', 'text-on-surface-variant');
+          } else {
+            tabEl.classList.remove('bg-panel-surface', 'border-frame-ink', 'text-frame-ink');
+            tabEl.classList.add('border-border-hairline', 'text-on-surface-variant');
+          }
+        }
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-canvas-bg border-t-2 border-frame-ink py-space-xs px-space-md"><div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest"><div class="flex items-center gap-space-md"><span>LOC: 45.4215° N // 75.6972° W</span><span class="hidden md:inline text-outline-variant">|</span><span class="hidden md:inline">GRID: 1360px MECHANICAL CHASSIS</span><span class="hidden md:inline text-outline-variant">|</span><span class="hidden md:inline">CALIBRATION: RIGID_INK</span></div><div class="flex items-center gap-space-md"><span>BUFFER: OK (0 ERR)</span><span class="text-outline-variant">|</span><span class="text-frame-ink font-semibold">© 2024 CODE ROASTER INSTRUMENTS</span></div></div></footer></div></body></html>
